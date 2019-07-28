@@ -1,4 +1,4 @@
-# Dockerized Atlassian Bitbucket
+# Dockerized Atlassian Bitbucket based on [teamatldocker/bitbucket](https://github.com/teamatldocker/bitbucket)
 
 "Built for professional teams - Distributed version control system that makes it easy for you to collaborate with your team. The only collaborative Git solution that massively scales." - [[Source](https://www.atlassian.com/software/bitbucket)]
 
@@ -6,16 +6,16 @@
 
 | Product |Version | Tags  | Dockerfile |
 |---------|--------|-------|------------|
-| Bitbucket | 5.16.0 | 5.16.0, latest | [Dockerfile](https://github.com/blacklabelops/bitbucket/blob/master/Dockerfile) |
+| Bitbucket | 5.16.0 | 5.16.0 | [Dockerfile](https://github.com/MultiCatLtd/bitbucket/blob/master/Dockerfile) |
 
 ## Related Images
 
 You may also like:
 
-* [blacklabelops/jira](https://github.com/blacklabelops/jira): The #1 software development tool used by agile teams
-* [blacklabelops/confluence](https://github.com/blacklabelops/confluence): Create, organize, and discuss work with your team
-* [blacklabelops/bitbucket](https://github.com/blacklabelops/bitbucket): Code, Manage, Collaborate
-* [blacklabelops/crowd](https://github.com/blacklabelops/crowd): Identity management for web apps
+* [MultiCatLtd/jira](https://github.com/MultiCatLtd/jira): The #1 software development tool used by agile teams
+* [MultiCatLtd/confluence](https://github.com/MultiCatLtd/confluence): Create, organize, and discuss work with your team
+* [MultiCatLtd/bitbucket](https://github.com/MultiCatLtd/bitbucket): Code, Manage, Collaborate
+* [MultiCatLtd/crowd](https://github.com/MultiCatLtd/crowd): Identity management for web apps
 
 # Make It Short
 
@@ -24,7 +24,7 @@ Docker-CLI:
 Just type and follow the manual installation procedure in your browser:
 
 ~~~~
-$ docker run -d -p 7990:7990 --name bitbucket blacklabelops/bitbucket
+$ docker run -d -p 7990:7990 --name bitbucket multicat/bitbucket
 ~~~~
 
 > Point your browser to http://yourdockerhost:7990
@@ -45,7 +45,7 @@ $ docker run --name postgres_bitbucket -d \
     -e 'POSTGRES_USER=bitbucketdb' \
     -e 'POSTGRES_PASSWORD=jellyfish' \
     -e 'POSTGRES_ENCODING=UTF8' \
-    blacklabelops/postgres
+    multicat/postgres
 ~~~~
 
 Secondly, start Bitbucket:
@@ -53,7 +53,7 @@ Secondly, start Bitbucket:
 ~~~~
 $ docker run -d --name bitbucket \
 	  --link postgres_bitbucket:postgres_bitbucket \
-	  -p 7990:7990 blacklabelops/bitbucket
+	  -p 7990:7990 multicat/bitbucket
 ~~~~
 
 >  Starts Crowd and links it to the postgresql instances. JDBC URL: jdbc:postgresql://postgres_bitbucket/bitbucketdb
@@ -83,7 +83,7 @@ $ docker run -d --name bitbucket \
     -v your-local-folder-or-volume:/var/atlassian/bitbucket \
     -e "BITBUCKET_EMBEDDED_SEARCH=true" \
     -p 7990:7990 \
-    blacklabelops/bitbucket /opt/bitbucket/bin/start-bitbucket.sh -fg
+    multicat/bitbucket /opt/bitbucket/bin/start-bitbucket.sh -fg
 ~~~~
 
 > A separate java process for Elasticsearch will be started.
@@ -108,7 +108,7 @@ First start the polling container:
 $ docker run -d --name bitbucket \
     -e "DOCKER_WAIT_HOST=your_postgres_host" \
     -e "DOCKER_WAIT_PORT=5432" \
-    -p 80:8090 blacklabelops/bitbucket
+    -p 80:8090 multicat/bitbucket
 ~~~~
 
 > Waits at most 60 seconds for the database.
@@ -144,7 +144,7 @@ $ docker run -d --name bitbucket \
     -e "BITBUCKET_PROXY_NAME=myhost.example.com" \
     -e "BITBUCKET_PROXY_PORT=443" \
     -e "BITBUCKET_PROXY_SCHEME=https" \
-    blacklabelops/bitbucket
+    multicat/bitbucket
 ~~~~
 
 > ssh keys will be copied and are available at runtime.
@@ -211,7 +211,7 @@ $ docker run --rm --name bitbucket_backup \
     -e "BITBUCKET_BASEURL=http://yourbitbucketserverurl:yourport" \
     -e "BITBUCKET_USER=youradmin" \
     -e "BITBUCKET_PASSWORD=yourpassword" \
-    blacklabelops/bitbucket \
+    multicat/bitbucket \
     java -jar /opt/backupclient/bitbucket-backup-client/bitbucket-backup-client.jar
 ~~~~
 
@@ -228,7 +228,7 @@ $ docker run -d \
     -e "JVM_MINIMUM_MEMORY=2g" \
     -e "JVM_MAXIMUM_MEMORY=3g" \
     -p 7990:7990 \
-    blacklabelops/bitbucket
+    multicat/bitbucket
 ~~~~
 
 This will start Bitbucket with `-Xms=2g -Xmx=3g`.
@@ -254,7 +254,7 @@ $ docker run -d --name bitbucket \
     -e "BITBUCKET_PROXY_NAME=myhost.example.com" \
     -e "BITBUCKET_PROXY_PORT=443" \
     -e "BITBUCKET_PROXY_SCHEME=https" \
-    blacklabelops/bitbucket
+    multicat/bitbucket
 ~~~~
 
 > Will set the values inside the bitbucket.properties in /var/atlassian/bitbucket/bitbucket.properties
@@ -271,7 +271,7 @@ $ docker run -d --name bitbucket \
     -e "BITBUCKET_PROXY_NAME=myhost.example.com" \
     -e "BITBUCKET_PROXY_PORT=80" \
     -e "BITBUCKET_PROXY_SCHEME=http" \
-    blacklabelops/bitbucket
+    multicat/bitbucket
 ~~~~
 
 > Example with dockertools
@@ -305,7 +305,7 @@ $ docker run -d --name bitbucket \
     -e "BITBUCKET_PROXY_NAME=192.168.99.100" \
     -e "BITBUCKET_PROXY_PORT=80" \
     -e "BITBUCKET_PROXY_SCHEME=http" \
-    blacklabelops/bitbucket
+    multicat/bitbucket
 ~~~~
 
 > Example with dockertools
@@ -361,7 +361,7 @@ Example:
 ~~~~
 $ docker run -d -p 7990:7990 -v your-local-folder-or-volume:/var/atlassian/bitbucket \
     -e "BITBUCKET_CROWD_SSO=true" \
-    --name bitbucket blacklabelops/bitbucket
+    --name bitbucket multicat/bitbucket
 ~~~~
 
  > SSO will be activated, you will need Crowd in order to authenticate.

@@ -1,5 +1,5 @@
 FROM blacklabelops/java:openjre.8
-MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
+MAINTAINER Tamás Kiss <kiss.tamas@multicat.hu>
 
 ARG BITBUCKET_VERSION=5.16.0
 # permissions
