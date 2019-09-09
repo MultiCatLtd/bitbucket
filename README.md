@@ -6,7 +6,7 @@
 
 | Product |Version | Tags  | Dockerfile |
 |---------|--------|-------|------------|
-| Bitbucket | 6.5.1 | 6.5.1 | [Dockerfile](https://github.com/MultiCatLtd/bitbucket/blob/master/Dockerfile) |
+| Bitbucket | 6.5.2 | 6.5.2 | [Dockerfile](https://github.com/MultiCatLtd/bitbucket/blob/master/Dockerfile) |
 
 ## Related Images
 
