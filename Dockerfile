@@ -1,7 +1,7 @@
 FROM blacklabelops/java:openjre.8
 MAINTAINER Tamás Kiss <kiss.tamas@multicat.hu>
 
-ARG BITBUCKET_VERSION=6.6.2
+ARG BITBUCKET_VERSION=6.7.0
 # permissions
 ARG CONTAINER_UID=1000
 ARG CONTAINER_GID=1000
